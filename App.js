@@ -30,7 +30,7 @@ class HomeScreen extends Component {
               <Body>
                 <Button transparent onPress={()=>this.props.navigation.navigate('Review')}>
                   <Icon active name="chatbubbles" />
-                  <Text>4 Review</Text>
+                  <Text>2 Review</Text>
                 </Button>
               </Body>
               <Right>
@@ -63,19 +63,11 @@ class DetailScreen extends Component {
             </CardItem>
             <CardItem>
               <Body>
-                <Image source={{uri: 'http://via.placeholder.com/350x150'}} style={{height: 200, width: 200, flex: 1}}/>
+                <Image source={{uri: 'http://via.placeholder.com/350x150'}} style={{height: 200, width: '100%', flex: 1}}/>
                 <Text>
                 Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
                 </Text>
               </Body>
-            </CardItem>
-            <CardItem>
-              <Left>
-                <Button transparent textStyle={{color: '#87838B'}}>
-                  <Icon name="logo-github" />
-                  <Text>1,926 stars</Text>
-                </Button>
-              </Left>
             </CardItem>
           </Card>
         </Content>
@@ -94,14 +86,52 @@ class ReviewScreen extends Component {
               <Label>Name</Label>
               <Input />
             </Item>
-            <Item floatingLabel last>
+            <Item floatingLabel>
               <Label>Message</Label>
               <Input />
             </Item>
-            <Button block primary>
+            <Button rounded block primary>
               <Text>Submit</Text>
             </Button>
           </Form>
+          <Card>
+            <CardItem header>
+              <Text>Arief Adjie</Text>
+            </CardItem>
+            <CardItem>
+              <Body>
+                <Text>
+                  Tempatnya bagus, hanya kalo hujan ya kehujanan
+                </Text>
+              </Body>
+            </CardItem>
+            <CardItem footer>
+              <Left>
+                <Icon active name="star" />
+                <Icon active name="star" />
+                <Icon name="star" />    
+              </Left>  
+            </CardItem>
+         </Card>
+         <Card>
+            <CardItem header>
+              <Text>Ismy Amnes</Text>
+            </CardItem>
+            <CardItem>
+              <Body>
+                <Text>
+                  Suka sekali, ada pancake durian.
+                </Text>
+              </Body>
+            </CardItem>
+            <CardItem footer>
+              <Left>
+                <Icon active name="star" />
+                <Icon active name="star" />
+                <Icon active name="star" />  
+              </Left>  
+            </CardItem>
+         </Card>
         </Content>
       </Container>
     );
