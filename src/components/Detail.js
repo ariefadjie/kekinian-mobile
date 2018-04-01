@@ -12,8 +12,8 @@ export default class Detail extends Component {
                 <Left>
                   <Thumbnail source={{uri: 'http://via.placeholder.com/350x150'}} />
                   <Body>
-                    <Text>NativeBase</Text>
-                    <Text note>April 15, 2016</Text>
+                    <Text>Titik Singgah</Text>
+                    <Text note>Jl. Ki Hajar Dewantara 15A, Metro Timur, Kota Metro</Text>
                   </Body>
                 </Left>
               </CardItem>
