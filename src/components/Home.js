@@ -3,6 +3,11 @@ import { Image,View,Activity,ActivityIndicator,FlatList } from 'react-native';
 import { Container, Content, Card, CardItem, Thumbnail, Text, Button, Icon, Left, Body, Right, List} from 'native-base';
 
 class Home extends Component {
+    static navigationOptions = {
+      title: 'Kekinian Place',
+    };
+
+
     constructor(props){
       super(props);
       this.state = {isLoading:true}
@@ -53,18 +58,18 @@ class Home extends Component {
                 </CardItem>
                 <CardItem>
                   <Left>
-                    <Icon active name="star" />
-                    <Icon active name="star" />
-                    <Icon name="star" />                                 
+                    <Icon active name="star" style={{color:'#EFAD57'}}/>                                 
+                    <Icon active name="star" style={{color:'#EFAD57'}}/>                                 
+                    <Icon active name="star" style={{color:'#EFAD57'}}/>                                 
                   </Left>
                   <Body>
-                    <Button transparent onPress={()=>this.props.navigation.navigate('Review')}>
-                      <Icon active name="chatbubbles" />
+                    <Button transparent success onPress={()=>this.props.navigation.navigate('Review')}>
+                      <Icon name="chatbubbles" />
                       <Text>2 Review</Text>
                     </Button>
                   </Body>
                   <Right>
-                    <Button transparent onPress={()=>this.props.navigation.navigate('Detail')}>
+                    <Button bordered rounded warning onPress={()=>this.props.navigation.navigate('Detail')}>
                     <Text>Detail</Text>
                     </Button>
                   </Right>

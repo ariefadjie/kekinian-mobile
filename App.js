@@ -13,6 +13,15 @@ const RootStack = StackNavigator(
   },
   {
     initialRouteName : 'Home',
+    navigationOptions: {
+      headerStyle: {
+        backgroundColor: '#5EB660',
+      },
+      headerTintColor: '#fff',
+      headerTitleStyle: {
+        fontWeight: 'bold',
+      },
+    },
   }
 );
 

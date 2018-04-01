@@ -3,6 +3,10 @@ import { Image } from 'react-native';
 import { Container, Content, Card, CardItem, Thumbnail, Text, Button, Icon, Left, Body, Right, Form, Item, Label, Input} from 'native-base';
 
 export default class Review extends Component {
+    static navigationOptions = {
+      title: 'Review',
+    };
+
     render() {
       return (
         <Container>
@@ -12,13 +16,15 @@ export default class Review extends Component {
                 <Label>Name</Label>
                 <Input />
               </Item>
-              <Item floatingLabel>
+              <Item floatingLabel last>
                 <Label>Message</Label>
                 <Input />
               </Item>
-              <Button rounded block primary>
+              <Item>
+              <Button bordered rounded block success>
                 <Text>Submit</Text>
               </Button>
+              </Item>
             </Form>
             <Card>
               <CardItem header>
@@ -33,9 +39,8 @@ export default class Review extends Component {
               </CardItem>
               <CardItem footer>
                 <Left>
-                  <Icon active name="star" />
-                  <Icon active name="star" />
-                  <Icon name="star" />    
+                  <Icon active name="star" style={{color:'#EFAD57'}}/>                                 
+                  <Icon active name="star" style={{color:'#EFAD57'}}/>                                    
                 </Left>  
               </CardItem>
            </Card>
@@ -52,9 +57,9 @@ export default class Review extends Component {
               </CardItem>
               <CardItem footer>
                 <Left>
-                  <Icon active name="star" />
-                  <Icon active name="star" />
-                  <Icon active name="star" />  
+                  <Icon active name="star" style={{color:'#EFAD57'}}/>                                 
+                  <Icon active name="star" style={{color:'#EFAD57'}}/>                                 
+                  <Icon active name="star" style={{color:'#EFAD57'}}/>                                 
                 </Left>  
               </CardItem>
            </Card>

@@ -3,6 +3,10 @@ import { Image } from 'react-native';
 import { Container, Content, Card, CardItem, Thumbnail, Text, Button, Icon, Left, Body, Right} from 'native-base';
 
 export default class Detail extends Component {
+    static navigationOptions = {
+      title: 'Detail',
+    };
+
     render() {
       return (
         <Container>
