@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Image,View,Activity,ActivityIndicator,FlatList } from 'react-native';
+import { Image,View,Activity,ActivityIndicator } from 'react-native';
 import { Container, Content, Card, CardItem, Thumbnail, Text, Button, Icon, Left, Body, Right, List} from 'native-base';
 
 class Home extends Component {
@@ -27,6 +27,16 @@ class Home extends Component {
         .catch((error)=>{
           console.error(error);
         });
+    }
+
+    numberToArray(number)
+    {
+      var star = [];
+      for(let i = 0; i < number; i++)
+      {
+        star[i] = null;
+      }
+      return star;
     }
 
     render() {
@@ -57,9 +67,11 @@ class Home extends Component {
                 </CardItem>
                 <CardItem>
                   <Left>
-                    <Icon active name="star" style={{color:'#EFAD57'}}/>                                 
-                    <Icon active name="star" style={{color:'#EFAD57'}}/>                                 
-                    <Icon active name="star" style={{color:'#EFAD57'}}/>                                 
+                    {
+                        this.numberToArray(item.rate).map(function(x,y){
+                          return <Icon active name="star" style={{color:'#EFAD57'}} key={x}/>
+                        })
+                    }                                  
                   </Left>
                   <Body>
                     <Button transparent success onPress={()=>this.props.navigation.navigate('Review',{id:item.id})}>
