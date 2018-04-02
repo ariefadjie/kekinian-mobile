@@ -7,7 +7,6 @@ class Home extends Component {
       title: 'Kekinian Place',
     };
 
-
     constructor(props){
       super(props);
       this.state = {isLoading:true}
@@ -15,12 +14,12 @@ class Home extends Component {
 
     componentDidMount()
     {
-      return fetch('https://facebook.github.io/react-native/movies.json')
+      return fetch('https://3606595c.ap.ngrok.io/api/v1/places')
         .then((response)=>response.json())
         .then((responseJson)=>{
           this.setState({
             isLoading:false,
-            dataSource: responseJson.movies
+            dataSource: responseJson
           },function(){
           
           })
@@ -46,15 +45,15 @@ class Home extends Component {
               <Card>
                 <CardItem>
                   <Left>
-                    <Thumbnail source={{uri: 'http://via.placeholder.com/350x150'}} />
+                    <Thumbnail source={{uri: item.img_profile}} />
                     <Body>
-                      <Text>{item.title}</Text>
-                      <Text note>Jl. Ki Hajar Dewantara 15A, Metro Timur, Kota Metro</Text>
+                      <Text>{item.name}</Text>
+                      <Text note>{item.location}</Text>
                     </Body>
                   </Left>
                 </CardItem>
                 <CardItem cardBody>
-                  <Image source={{uri: 'http://via.placeholder.com/350x150'}} style={{height: 200, width: null, flex: 1}}/>
+                  <Image source={{uri: item.img_cover}} style={{height: 200, width: null, flex: 1}}/>
                 </CardItem>
                 <CardItem>
                   <Left>
@@ -63,13 +62,13 @@ class Home extends Component {
                     <Icon active name="star" style={{color:'#EFAD57'}}/>                                 
                   </Left>
                   <Body>
-                    <Button transparent success onPress={()=>this.props.navigation.navigate('Review')}>
+                    <Button transparent success onPress={()=>this.props.navigation.navigate('Review',{id:item.id})}>
                       <Icon name="chatbubbles" />
-                      <Text>2 Review</Text>
+                      <Text>{item.review} Review</Text>
                     </Button>
                   </Body>
                   <Right>
-                    <Button bordered rounded warning onPress={()=>this.props.navigation.navigate('Detail')}>
+                    <Button bordered rounded warning onPress={()=>this.props.navigation.navigate('Detail',{id:item.id})}>
                     <Text>Detail</Text>
                     </Button>
                   </Right>
