@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Image,View,ActivityIndicator } from 'react-native';
 import { Container, Content, Card, CardItem, Thumbnail, Text, Button, Icon, Left, Body, Right} from 'native-base';
+import axios from 'axios';
 
 export default class Detail extends Component {
     static navigationOptions = {
@@ -16,19 +17,16 @@ export default class Detail extends Component {
     {
       const {params} = this.props.navigation.state;
       const id = params ? params.id : null;
-      return fetch('https://kekinian.ariefadjie.com/api/v1/places/'+id)
-        .then((response)=>response.json())
-        .then((responseJson)=>{
-          this.setState({
-            isLoading:false,
-            dataSource: responseJson
-          },function(){
-          
-          })
-        })
-        .catch((error)=>{
-          console.error(error);
+      return axios.get('https://kekinian.ariefadjie.com/api/v1/places/'+id)
+      .then(res => {
+        this.setState({
+          isLoading:false,
+          dataSource: res.data
         });
+      })
+      .catch((error)=>{
+        console.error(error);
+      });
     }
 
     render() {

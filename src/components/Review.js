@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Image,View,ActivityIndicator } from 'react-native';
 import { Container, Content, Card, CardItem, Thumbnail, Text, Button, Icon, Left, Body, Right, Form, Item, Label, Input, List, Picker} from 'native-base';
+import axios from 'axios';
 
 export default class Review extends Component {
     static navigationOptions = {
@@ -21,19 +22,16 @@ export default class Review extends Component {
     {
       const {params} = this.props.navigation.state;
       const id = params ? params.id : null;
-      return fetch('https://kekinian.ariefadjie.com/api/v1/reviews/'+id)
-        .then((response)=>response.json())
-        .then((responseJson)=>{
-          this.setState({
-            isLoading:false,
-            dataSource: responseJson
-          },function(){
-          
-          })
-        })
-        .catch((error)=>{
-          console.error(error);
+      return axios.get('https://kekinian.ariefadjie.com/api/v1/reviews/'+id)
+      .then(res => {
+        this.setState({
+          isLoading:false,
+          dataSource: res.data
         });
+      })
+      .catch((error)=>{
+        console.error(error);
+      });
     }
 
     numberToArray(number)
@@ -55,7 +53,20 @@ export default class Review extends Component {
 
     handleSubmit()
     {
-      //alert('name : '+this.state.name+' message : '+this.state.message+' rate :'+this.state.rate);
+      const {params} = this.props.navigation.state;
+      const id = params ? params.id : null;
+      return axios.post('https://kekinian.ariefadjie.com/api/v1/reviews/'+id,{
+        name : this.state.name,
+        message : this.state.message,
+        rate : this.state.rate
+      })
+      .then(res => {
+        alert(res.data.message);
+      })
+      .catch(res => {
+        var errors = res.response.data.errors;
+        alert(JSON.stringify(errors));
+      });
     }
 
     render() {
