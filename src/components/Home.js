@@ -14,7 +14,7 @@ class Home extends Component {
 
     componentDidMount()
     {
-      return fetch('https://3606595c.ap.ngrok.io/api/v1/places')
+      return fetch('https://kekinian.ariefadjie.com/api/v1/places')
         .then((response)=>response.json())
         .then((responseJson)=>{
           this.setState({

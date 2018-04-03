@@ -16,7 +16,7 @@ export default class Detail extends Component {
     {
       const {params} = this.props.navigation.state;
       const id = params ? params.id : null;
-      return fetch('https://3606595c.ap.ngrok.io/api/v1/places/'+id)
+      return fetch('https://kekinian.ariefadjie.com/api/v1/places/'+id)
         .then((response)=>response.json())
         .then((responseJson)=>{
           this.setState({
