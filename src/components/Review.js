@@ -14,7 +14,8 @@ export default class Review extends Component {
         isLoading:true,
         name: '',
         message: '',
-        rate:1
+        rate:0,
+        btnSubmitDisabled:false,
       }
     }
 
@@ -53,17 +54,33 @@ export default class Review extends Component {
 
     handleSubmit()
     {
+      this.setState({
+        btnSubmitDisabled:true,
+      });
       const {params} = this.props.navigation.state;
       const id = params ? params.id : null;
-      return axios.post('https://kekinian.ariefadjie.com/api/v1/reviews/'+id,{
+      const review = {
         name : this.state.name,
         message : this.state.message,
         rate : this.state.rate
-      })
+      }
+      return axios.post('https://kekinian.ariefadjie.com/api/v1/reviews/'+id,review)
       .then(res => {
+        var dataSource = this.state.dataSource.slice();
+        dataSource.unshift(res.data.data);
+        this.setState({
+          name:'',
+          message:'',
+          rate:0,
+          btnSubmitDisabled:false,
+          dataSource:dataSource,
+        });
         alert(res.data.message);
       })
       .catch(res => {
+        this.setState({
+          btnSubmitDisabled:false,
+        });
         var errors = res.response.data.errors;
         alert(JSON.stringify(errors));
       });
@@ -77,7 +94,7 @@ export default class Review extends Component {
           </View>
         )
       }
-
+      let btnSubmitDisabled = this.state.btnSubmitDisabled;
       return (
         <Container>
           <Content>
@@ -108,6 +125,7 @@ export default class Review extends Component {
                       onValueChange={this.onValueChange.bind(this)}
                       style={{width:'88%'}} 
                     >
+                      <Picker.Item label="Please Select" value="0" />
                       <Picker.Item label="1 Star" value="1" />
                       <Picker.Item label="2 Star" value="2" />
                       <Picker.Item label="3 Star" value="3" />
@@ -117,7 +135,7 @@ export default class Review extends Component {
               </CardItem>
               <CardItem>
                 <Body>
-                  <Button rounded block success onPress={this.handleSubmit.bind(this)}>
+                  <Button disabled={btnSubmitDisabled} rounded block success onPress={this.handleSubmit.bind(this)}>
                     <Text>Submit</Text>
                   </Button>
                 </Body>
