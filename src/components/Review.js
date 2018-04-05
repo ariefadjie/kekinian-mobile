@@ -82,9 +82,10 @@ export default class Review extends Component {
       const review = {
         name : this.state.name,
         message : this.state.message,
-        rate : this.state.rate
+        rate : this.state.rate,
+        place_id : id
       }
-      return axios.post('https://kekinian.ariefadjie.com/api/v1/reviews/'+id,review)
+      return axios.post('https://kekinian.ariefadjie.com/api/v1/reviews',review)
       .then(res => {
         var dataSource = this.state.dataSource.slice();
         dataSource.unshift(res.data.data);
