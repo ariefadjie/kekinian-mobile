@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Image,View,ActivityIndicator } from 'react-native';
-import { Container, Content, Card, CardItem, Thumbnail, Text, Button, Icon, Left, Body, Right, Form, Item, Label, Input, List, Picker} from 'native-base';
+import { Container, Content, Card, CardItem, Thumbnail, Text, Button, Icon, Left, Body, Right, Form, Item, Label, Input, List, Picker, Spinner} from 'native-base';
 import axios from 'axios';
 
 export default class Review extends Component {
@@ -43,6 +43,26 @@ export default class Review extends Component {
         star[i] = null;
       }
       return star;
+    }
+
+    submitIsLoading()
+    {
+      if(this.state.btnSubmitDisabled)
+      {
+        return (
+          <Button disabled rounded block success onPress={this.handleSubmit.bind(this)}>
+            <Spinner/>
+          </Button>
+        )
+      }
+      else
+      {
+        return (
+          <Button rounded block success onPress={this.handleSubmit.bind(this)}>
+            <Text>Submit</Text>
+          </Button>
+        )
+      }
     }
 
     onValueChange(value)
@@ -94,7 +114,7 @@ export default class Review extends Component {
           </View>
         )
       }
-      let btnSubmitDisabled = this.state.btnSubmitDisabled;
+
       return (
         <Container>
           <Content>
@@ -135,9 +155,7 @@ export default class Review extends Component {
               </CardItem>
               <CardItem>
                 <Body>
-                  <Button disabled={btnSubmitDisabled} rounded block success onPress={this.handleSubmit.bind(this)}>
-                    <Text>Submit</Text>
-                  </Button>
+                  {this.submitIsLoading()}
                 </Body>
               </CardItem>
             </Card>
