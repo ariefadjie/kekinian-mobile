@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { StackNavigator} from 'react-navigation';
 
-import Home from './src/components/Home';
-import Detail from './src/components/Detail';
-import Review from './src/components/Review';
+import Home from './src/views/Home';
+import Detail from './src/views/Detail';
+import Review from './src/views/Review';
 
 const RootStack = StackNavigator(
   {
