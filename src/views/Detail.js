@@ -21,7 +21,7 @@ export default class Detail extends Component {
       .then(res => {
         this.setState({
           isLoading:false,
-          dataSource: res.data
+          detail: res.data
         });
       })
       .catch((error)=>{
@@ -38,7 +38,7 @@ export default class Detail extends Component {
         )
       }
 
-      const item = this.state.dataSource;
+      const item = this.state.detail;
 
       return (
         <Container>

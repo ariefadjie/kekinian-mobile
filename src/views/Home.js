@@ -19,7 +19,7 @@ class Home extends Component {
       .then(res => {
         this.setState({
           isLoading:false,
-          dataSource: res.data
+          places: res.data
         });
       })
       .catch((error)=>{
@@ -49,7 +49,7 @@ class Home extends Component {
       return (
         <Container>
           <Content>
-            <List dataArray={this.state.dataSource} renderRow={(item) =>
+            <List dataArray={this.state.places} renderRow={(item) =>
               <Card>
                 <CardItem>
                   <Left>

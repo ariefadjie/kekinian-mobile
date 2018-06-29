@@ -27,7 +27,7 @@ export default class Review extends Component {
       .then(res => {
         this.setState({
           isLoading:false,
-          dataSource: res.data
+          reviews: res.data
         });
       })
       .catch((error)=>{
@@ -87,14 +87,14 @@ export default class Review extends Component {
       }
       return axios.post('https://kekinian.ariefadjie.com/api/v1/reviews',review)
       .then(res => {
-        var dataSource = this.state.dataSource.slice();
-        dataSource.unshift(res.data.data);
+        var reviews = this.state.reviews.slice();
+        reviews.unshift(res.data.data);
         this.setState({
           name:'',
           message:'',
           rate:0,
           btnSubmitDisabled:false,
-          dataSource:dataSource,
+          reviews:reviews
         });
         alert(res.data.message);
       })
@@ -161,7 +161,7 @@ export default class Review extends Component {
               </CardItem>
             </Card>
             </Form>          
-            <List dataArray={this.state.dataSource} renderRow={(item) =>
+            <List dataArray={this.state.reviews} renderRow={(item) =>
               <Card>
                 <CardItem header>
                   <Text>{item.name}</Text>
